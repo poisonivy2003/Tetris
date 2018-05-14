@@ -118,6 +118,7 @@ public class Grid {
 		System.out.println("test " + cmd);
 		switch (cmd) {
 		case Action.CMD_ROTATE:
+			mThisBlock.turn();
 			break;
 		case Action.CMD_MOVE_LEFT:
 			mThisBlock.setXPos(mxPos - 1);
@@ -127,12 +128,18 @@ public class Grid {
 			break;
 		case Action.CMD_MOVE_DOWN:
 			mThisBlock.setYPos(myPos + 1);
+			updateScore(2);
 			break;
 		case Action.CMD_MOVE_BOTTOM:
 			break;
 		default:
 			break;
 		}
+	}
+	
+	public void updateScore(int e)
+	{
+		mScore += e;
 	}
 
 }

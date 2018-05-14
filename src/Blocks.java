@@ -23,9 +23,10 @@ public abstract class Blocks{
 	
 	//Abstract methods:
 	public abstract void shape(Graphics g);
-	public abstract void turn(Graphics g);
+	public abstract void turn();
 	public abstract int getBlockLong();
 	public abstract int[][] getPositions();
+	public abstract int getBlockWidth();
 	
 	//Non-abstract methods
 //	public static int getX()

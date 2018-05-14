@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class IBlock extends Blocks{
 	private int currentSide;
-	private int blockLong;
+	private int blockLong, blockWide;
 	
 	public IBlock(int x, int y) {
 		super(x, y);
@@ -36,19 +36,19 @@ public class IBlock extends Blocks{
 			}
 		}
 	}
-
-	public void turn(Graphics g) {
-		if (currentSide == 0)
-		{
-			currentSide = 1;
-			shape(g);
-		}
-		else
-		{
-			currentSide = 0;
-			shape(g);
-		}
-	}
+//
+//	public void turnShape(Graphics g) {
+//		if (currentSide == 0)
+//		{
+//			currentSide = 1;
+//			shape(g);
+//		}
+//		else
+//		{
+//			currentSide = 0;
+//			shape(g);
+//		}
+//	}
 
 	public int getBlockLong() {
 		if (currentSide == 0)
@@ -77,5 +77,30 @@ public class IBlock extends Blocks{
 			};
 		}
 		return blockPosition;
+	}
+	
+	public void turn() {
+		if (currentSide == 0)
+		{
+			currentSide = 1;
+		}
+		else
+		{
+			currentSide = 0;
+		}
+		getPositions();
+	}
+
+	public int getBlockWidth()
+	{
+		if (currentSide == 0)
+		{
+			blockWide = 4;
+		}
+		else 
+		{
+			blockWide = 1;
+		}
+		return blockWide;
 	}
 }

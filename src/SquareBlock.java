@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class SquareBlock extends Blocks{
-	private int blockLong;
+	private int blockLong, blockWide;
 	
 	public SquareBlock(int x, int y) {
 		super(x, y);
@@ -30,9 +30,9 @@ public class SquareBlock extends Blocks{
 		
 	}
 
-	public void turn(Graphics g) {
-		shape(g);
-	}
+//	public void turnShape(Graphics g) {
+//		shape(g);
+//	}
 
 	public int getBlockLong() {
 		return 2;
@@ -44,5 +44,13 @@ public class SquareBlock extends Blocks{
 			{0, 0}, {0, 1}, {1, 0}, {1, 1}
 		};
 		return blockPosition;	
+	}
+	
+	public void turn() {
+		getPositions();
+	}
+	
+	public int getBlockWidth() {
+		return 2;
 	}
 }

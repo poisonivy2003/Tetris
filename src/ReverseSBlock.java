@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class ReverseSBlock extends Blocks{
 	private int currentSide;
-	private int blockLong;
+	private int blockLong, blockWide;
 
 	public ReverseSBlock(int x, int y) {
 		super(x, y);
@@ -48,18 +48,18 @@ public class ReverseSBlock extends Blocks{
 		}
 	}
 
-	public void turn(Graphics g) {
-		if (currentSide == 0)
-		{
-			currentSide = 1;
-			shape(g);
-		}
-		else
-		{
-			currentSide = 0;
-			shape(g);
-		}
-	}
+//	public void turnShape(Graphics g) {
+//		if (currentSide == 0)
+//		{
+//			currentSide = 1;
+//			shape(g);
+//		}
+//		else
+//		{
+//			currentSide = 0;
+//			shape(g);
+//		}
+//	}
 
 	public int getBlockLong() {
 		if (currentSide == 1)
@@ -78,17 +78,40 @@ public class ReverseSBlock extends Blocks{
 		if (currentSide == 0)
 		{
 			blockPosition = new int[][] {
-				{0, 0}, {0, 1}, {-1, 1}, {-1, 2}
+				{1, 0}, {1, 1}, {0, 1}, {0, 2}
 			};
 		}
 		else
 		{
 			blockPosition = new int[][] {
-				{0, 0}, {0, 1}, {1, 0}, {-1, 1}
+				{1, 0}, {1, 1}, {2, 0}, {0, 1}
 			};
 		}
 		return blockPosition;
 	}
 
+	public void turn() {
+		if (currentSide == 0)
+		{
+			currentSide = 1;
+		}
+		else
+		{
+			currentSide = 0;
+		}
+		getPositions();
+	}
+	
+	public int getBlockWidth()
+	{
+		if (currentSide == 1)		{
+			blockWide = 3;
+		}
+		else 
+		{
+			blockWide = 2;
+		}
+		return blockWide;
+	}
 }
 

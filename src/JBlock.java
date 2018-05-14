@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class JBlock extends Blocks{
 	private int currentSide;
-	private int blockLong;
+	private int blockLong, blockWide;
 	
 	public JBlock(int x, int y) {
 		super(x, y);
@@ -85,28 +85,28 @@ public class JBlock extends Blocks{
 		}
 	}
 
-	public void turn(Graphics g) {
-		if (currentSide == 0)
-		{
-			currentSide = 1;
-			shape(g);
-		}
-		else if (currentSide == 1)
-		{
-			currentSide = 2;
-			shape(g);
-		}
-		else if (currentSide == 2)
-		{
-			currentSide = 3;
-			shape(g);
-		}
-		else
-		{
-			currentSide = 0;
-			shape(g);
-		}
-	}
+//	public void turnShape(Graphics g) {
+//		if (currentSide == 0)
+//		{
+//			currentSide = 1;
+//			shape(g);
+//		}
+//		else if (currentSide == 1)
+//		{
+//			currentSide = 2;
+//			shape(g);
+//		}
+//		else if (currentSide == 2)
+//		{
+//			currentSide = 3;
+//			shape(g);
+//		}
+//		else
+//		{
+//			currentSide = 0;
+//			shape(g);
+//		}
+//	}
 
 	public int getBlockLong() {
 		if (currentSide == 1 || currentSide == 3)
@@ -125,13 +125,13 @@ public class JBlock extends Blocks{
 		if (currentSide == 0)
 		{
 			blockPosition = new int[][] {
-				{0, 0}, {0, 1}, {0, 2}, {-1, 2}
+				{1, 0}, {1, 1}, {1, 2}, {0, 2}
 			};
 		}
 		else if (currentSide == 1)
 		{
 			blockPosition = new int[][] {
-				{0, 0}, {0, 1}, {1, 1}, {2, 2}
+				{0, 0}, {0, 1}, {1, 1}, {2, 1}
 			};
 		}
 		else if (currentSide == 2)
@@ -143,10 +143,42 @@ public class JBlock extends Blocks{
 		else
 		{
 			blockPosition = new int[][] {
-				{0, 0}, {0, 1}, {-1, 0}, {-2, 0}
+				{2, 0}, {2, 1}, {1, 0}, {0, 0}
 			};
 		}
 		return blockPosition;
 	}
+	
+	public void turn() {
+		if (currentSide == 0)
+		{
+			currentSide = 1;
+		}
+		else if (currentSide == 1)
+		{
+			currentSide = 2;
+		}
+		else if (currentSide == 2)
+		{
+			currentSide = 3;
+		}
+		else
+		{
+			currentSide = 0;
+		}
+		getPositions();
+	}
 
+	public int getBlockWidth()
+	{
+		if (currentSide == 1 || currentSide == 3)
+		{
+			blockWide = 3;
+		}
+		else 
+		{
+			blockWide = 2;
+		}
+		return blockWide;
+	}
 }
