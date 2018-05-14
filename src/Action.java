@@ -3,43 +3,53 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.Timer;
+
 public class Action extends KeyAdapter implements ActionListener{
 
-	private KeyEvent up;
-	private KeyEvent down;
-	private KeyEvent left;
-	private KeyEvent right;
-	private Blocks block;
+//	private KeyEvent up;
+//	private KeyEvent down;
+//	private KeyEvent left;
+//	private KeyEvent right;
+//	private Blocks block;
+	private Grid mGrid;
 	
-//	public Action(xCoord, yCoord) {
-//		
-//	}
+	public Action(Grid grid) {
+		mGrid = grid;
+		
+	}
+	
+	static final int  CMD_NONE = 0;
+	static final int  CMD_ROTATE = 1;
+	static final int  CMD_MOVE_LEFT = 2;
+	static final int  CMD_MOVE_RIGHT = 3;
+	static final int  CMD_MOVE_DOWN = 4;
+	static final int  CMD_MOVE_BOTTOM = 5;
 	
 	public void keyPressed(KeyEvent e) {
 		int command = e.getKeyCode();
-		System.out.println(command);
+		//System.out.println(command);
+		int cmd = CMD_NONE;
 		switch(command) {
-//		case 32:
-//			if (Grid.getTmpWidth() != 15) {
-//				TetrisVisual.time = 30;
-//			}
-		case 37:
-			if (Grid.getTmpWidth() >= 0 && Grid.getTmpWidth() <= 5) {
-				Grid.setTmpWidth(-1);
-			}
+		case 32: // space bor
+			cmd = CMD_MOVE_BOTTOM;
+			break;
+		case 37: // left arrow
+			cmd = CMD_MOVE_LEFT;
 			break;
 		case 38:
-			
+			cmd = CMD_ROTATE;
 			break;
 		case 39:
-			if (Grid.getTmpWidth() >= 0 && Grid.getTmpWidth() <= 5) {
-				Grid.setTmpWidth(1);
-			}
+			cmd = CMD_MOVE_RIGHT;
 			break;
 		case 40:
-			Grid.setTmpHeight(1);
+			cmd = CMD_MOVE_DOWN;
+		default:
+			assert(false);
 			break;
 		}
+		mGrid.moveBlock(cmd);
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -49,7 +59,7 @@ public class Action extends KeyAdapter implements ActionListener{
 
 	
 	public void keyTyped(KeyEvent e) {
-		System.out.println("g");
+		//System.out.println("g");
 //		if (e.getSource() == left) {
 //			System.out.println("left");
 //		} else if (e.getSource() == right) {

@@ -10,21 +10,21 @@ import javax.swing.*;
 
 
 public class TetrisVisual extends JPanel implements ActionListener {
-	private Blocks mBlock;
+	///zzz//private Blocks mBlock;
 	private Grid mG;
 	private int mSquareWidth;
 	private int mSquareHeight;
 	Action mA;
-	public static int time;
+	//zzz//public static int time;
 	
 	public TetrisVisual() {
-		mBlock = Blocks.chooseBlock();
-		mA  = new Action();
-		addKeyListener(mA);
+		//zzz//mBlock = Blocks.chooseBlock();
 		mG = new Grid(6, 15);
+		mA  = new Action(mG);
+		addKeyListener(mA);
 		mSquareWidth = 50;
 		mSquareHeight = 50;
-		time = 1000;
+		int time = 500;  // in milli-seconds
 		Timer clock = new Timer(time, this);
 		clock.start();
 

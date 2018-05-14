@@ -50,7 +50,7 @@ public abstract class Blocks{
 	
 	public static void setXPos(int x)
 	{
-		xCoord = x;	
+		xPos = x;	
 	}
 	
 	public static void setYPos(int y)
