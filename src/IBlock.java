@@ -62,6 +62,22 @@ public class IBlock extends Blocks{
 		return blockLong;
 	}
 
+	public int getBlockWide() {
+		if (currentSide == 0)
+		{
+			blockLong = 4;
+		}
+		else 
+		{
+			blockLong = 1;
+		}
+		return blockLong;
+	}
+	
+	public int getBlockType() {
+		return BLOCK_I;
+	}
+	
 	public int[][] getPositions() {
 		int[][] blockPosition;
 		if (currentSide == 0)

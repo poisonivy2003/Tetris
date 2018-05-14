@@ -16,7 +16,9 @@ public class Action extends KeyAdapter implements ActionListener{
 	
 	public Action(Grid grid) {
 		mGrid = grid;
-		
+		int time = 1000;  // in milli-seconds
+		Timer clock = new Timer(time, this);
+		clock.start();
 	}
 	
 	static final int  CMD_NONE = 0;
@@ -74,6 +76,7 @@ public class Action extends KeyAdapter implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		mGrid.moveBlock(CMD_MOVE_DOWN);
 		System.out.println("a");
 	}
 	
