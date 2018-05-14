@@ -30,7 +30,6 @@ public class Action extends KeyAdapter implements ActionListener{
 	
 	public void keyPressed(KeyEvent e) {
 		int command = e.getKeyCode();
-		//System.out.println(command);
 		int cmd = CMD_NONE;
 		switch(command) {
 		case 32: // space bor
@@ -53,31 +52,9 @@ public class Action extends KeyAdapter implements ActionListener{
 		}
 		mGrid.moveBlock(cmd);
 	}
-	
-	public void keyReleased(KeyEvent e) {
-		//System.out.println("f");
-	}
 
-
-	
-	public void keyTyped(KeyEvent e) {
-		//System.out.println("g");
-//		if (e.getSource() == left) {
-//			System.out.println("left");
-//		} else if (e.getSource() == right) {
-//			System.out.println("right");
-//		} else if (e.getSource() == up) {
-//			System.out.println("up");
-//		} else if (e.getSource() == down) {
-//			System.out.println("down");
-//		}
-//		String u = (String) e.getSource();
-//		System.out.println(u);
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		mGrid.moveBlock(CMD_MOVE_DOWN);
-		System.out.println("a");
 	}
 	
 	

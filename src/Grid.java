@@ -56,7 +56,7 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			//System.out.println("check" + x + " " + y);
+			// .out.println("check" + x + " " + y);
 			if (mBackGrid[y][x] != Blocks.BLOCK_NONE)
 			{
 				return true;
@@ -84,7 +84,6 @@ public class Grid {
 			if (count == mBackGrid[row].length)
 				return true;
 		}
-		System.out.println(count);
 		return false;
 	}
 
@@ -102,7 +101,7 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			//System.out.println("merge" + x + " " + y);
+			// .out.println("merge" + x + " " + y);
 			mBackGrid[y][x] = mThisBlock.getBlockType();
 		}
 		mThisBlock = null;
@@ -129,7 +128,6 @@ public class Grid {
 		int[][] blockPos = mThisBlock.getPositions();
 		mxPos = mThisBlock.getXPos();
 		myPos = mThisBlock.getYPos();
-		//System.out.println(mxPos + " " + myPos);
 		for (int i = 0; i < blockPos.length; ++i) { // changes 0's to 1's for the squares that are occupied by the
 													// current block
 			int x = mxPos + blockPos[i][0];
@@ -173,13 +171,17 @@ public class Grid {
 	}
 
 	public void moveBlock(int cmd) {
-		System.out.println("test " + cmd);
 		if (mThisBlock == null) {
 			return;
 		}
 		switch (cmd) {
 		case Action.CMD_ROTATE:
 			mThisBlock.turn();
+			if (Blocks.getXPos() + mThisBlock.getBlockWidth() >= mWidth) {
+				mThisBlock.turn();
+				mThisBlock.turn();
+				mThisBlock.turn();
+			} 
 			break;
 		case Action.CMD_MOVE_LEFT:
 			if (Blocks.getXPos() > 0) {

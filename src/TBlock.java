@@ -64,9 +64,9 @@ public class TBlock extends Blocks {
 		if (currentSide == 0) {
 			blockPosition = new int[][] { { 0, 0 }, { 1, 0 }, { 2, 0 }, { 1, 1 } };
 		} else if (currentSide == 1) {
-			blockPosition = new int[][] { { 0, 0 }, { 1, 0 }, { 2, 0 }, { 1, 1 } };
+			blockPosition = new int[][] { { 0, 0 }, { 0, 1 }, { 1, 1 }, { 0, 2 } };
 		} else if (currentSide == 2) {
-			blockPosition = new int[][] { { 0, 1 }, { 1, 1 }, { 2, 1 }, { 1, 0 } };
+			blockPosition = new int[][] { { 0, 1 }, { 1, 0 }, { 1, 1 }, { 2, 1 } };
 		} else {
 			blockPosition = new int[][] { { 1, 0 }, { 1, 1 }, { 1, 2 }, { 0, 1 } };
 		}

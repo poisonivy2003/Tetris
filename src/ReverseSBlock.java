@@ -28,7 +28,7 @@ public class ReverseSBlock extends Blocks {
 		if (currentSide == 0) {
 			blockPosition = new int[][] { { 1, 0 }, { 1, 1 }, { 0, 1 }, { 0, 2 } };
 		} else {
-			blockPosition = new int[][] { { 1, 0 }, { 1, 1 }, { 2, 0 }, { 0, 1 } };
+			blockPosition = new int[][] { { 0, 0 }, { 1, 0 }, { 1, 1 }, { 2, 1 } };
 		}
 		return blockPosition;
 	}
