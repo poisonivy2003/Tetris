@@ -37,6 +37,11 @@ public class TetrisVisual extends JPanel implements ActionListener {
 	public void paintComponent (Graphics g)
 	{
 		int[][] matrix = mG.getMesh();
+		if (matrix == null)
+		{
+			g.drawString("GAME OVER", 100, 100);
+			return;
+		}
 		for (int row=0; row<matrix.length; row++) {
 			for (int column=0; column<matrix[row].length; column++) {
 				int cell = matrix[row][column];

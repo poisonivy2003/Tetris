@@ -1,6 +1,7 @@
 
 public class Grid {
-	private boolean mIsFilled, collide; // true if the entire block is filled
+	private boolean mIsFilled; // true if the entire block is filled
+	private boolean mIsGameOver;
 	private int mxPos, myPos; // how many blocks down and right the lock is
 	public static int mScore; // points
 	Blocks mThisBlock; // block passed in
@@ -19,9 +20,10 @@ public class Grid {
 				mBackGrid[i][j] = Blocks.BLOCK_NONE; // looping through array and setting each column(height) and row(width) to zero
 			}
 		}
+		mIsGameOver = false;
 	}
 
-	public void clearRow() {
+	public void tryClearRows() {
 		for (int row = 0; row < mBackGrid.length; ++row) {
 			if (isFilled(row) == true) // checks if this current row is filled
 			{
@@ -41,21 +43,29 @@ public class Grid {
 		}
 	}
 
-	public int stop(int height) {
-		int y = Blocks.getYPos();
-		if (collide == false) {
-			int whereOnY = Blocks.getYPos();
-			if (whereOnY == height) {
-				return 0;
-			} else {
-				return 1;
-			}
-		} else {
-			return 0;
+	public boolean checkOverlap() {
+		// updates the original grid, ("background")
+		if (mThisBlock == null) {
+			return false;
 		}
+		int[][] blockPos = mThisBlock.getPositions();
+		mxPos = mThisBlock.getXPos();
+		myPos = mThisBlock.getYPos();
+		for (int i = 0; i < blockPos.length; ++i) { // changes 0's to 1's for the squares that are occupied by the
+			// current block
+			// gets actual position from relative position
+			int x = mxPos + blockPos[i][0];
+			int y = myPos + blockPos[i][1];
+			//System.out.println("check" + x + " " + y);
+			if (mBackGrid[y][x] != Blocks.BLOCK_NONE)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public boolean endGame() {
+	public boolean isGameOver() {
 		for (int i = 0; i < mBackGrid[0].length; ++i) {
 			if (mBackGrid[0][i] == 1) {
 				return true;
@@ -68,20 +78,21 @@ public class Grid {
 	private boolean isFilled(int row) {
 		int count = 0;
 		for (int i = 0; i < mBackGrid[row].length; ++i) {
-			if (mBackGrid[row][i] == 1) {
+			if (mBackGrid[row][i] != Blocks.BLOCK_NONE) {
 				count++;
 			}
-			if (count == mBackGrid.length)
+			if (count == mBackGrid[row].length)
 				return true;
 		}
+		System.out.println(count);
 		return false;
 	}
 
 	// Assumption: User only calls this after the block has stopped moving
-	private void mergeBlockIntoGrid() {
+	private boolean mergeBlockIntoGrid() {
 		// updates the original grid, ("background")
 		if (mThisBlock == null) {
-			return;
+			return false;
 		}
 		int[][] blockPos = mThisBlock.getPositions();
 		mxPos = mThisBlock.getXPos();
@@ -91,14 +102,19 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			System.out.println("merge" + x + " " + y);
+			//System.out.println("merge" + x + " " + y);
 			mBackGrid[y][x] = mThisBlock.getBlockType();
 		}
 		mThisBlock = null;
+		return isGameOver();
 	}
 
 	// Caller is VIEW
 	public int[][] getMesh() {
+		if (mIsGameOver == true)
+		{
+			return null;
+		}
 		// create new object that copies the original background's elements
 		int[][] meshToDraw = new int[mHeight][mWidth];
 		for (int i = 0; i < mHeight; ++i) {
@@ -139,17 +155,33 @@ public class Grid {
 			mThisBlock.turn();
 			break;
 		case Action.CMD_MOVE_LEFT:
-			mThisBlock.setXPos(mxPos - 1);
+			if (Blocks.getXPos() > 0) {
+				mThisBlock.setXPos(mxPos - 1);
+			}
 			break;
 		case Action.CMD_MOVE_RIGHT:
-			mThisBlock.setXPos(mxPos + 1);
+			if (Blocks.getXPos() + mThisBlock.getBlockWidth() < mWidth) {
+				mThisBlock.setXPos(mxPos + 1);
+			}
 			break;
 		case Action.CMD_MOVE_DOWN:
 			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) {
 				mThisBlock.setYPos(myPos + 1);
+				if (checkOverlap() == true)
+				{
+					mThisBlock.setYPos(myPos - 1);
+					mIsGameOver = mergeBlockIntoGrid();
+					if (mIsGameOver == false)
+					{
+						createNewBlock();
+					}
+				}
 			} else {
-				mergeBlockIntoGrid();
-				createNewBlock();
+				mIsGameOver = mergeBlockIntoGrid();
+				if (mIsGameOver == false)
+				{
+					createNewBlock();
+				}
 			}
 			updateScore(2);
 			break;
@@ -157,6 +189,10 @@ public class Grid {
 			break;
 		default:
 			break;
+		}
+		if (mIsGameOver == false)
+		{
+			tryClearRows();
 		}
 	}
 	
