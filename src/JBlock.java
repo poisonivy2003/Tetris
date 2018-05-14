@@ -181,4 +181,23 @@ public class JBlock extends Blocks{
 		}
 		return blockWide;
 	}
+
+	@Override
+	public int getBlockWide() {
+		if (currentSide == 1 || currentSide == 3)
+		{
+			blockWide = 3;
+		}
+		else 
+		{
+			blockWide = 2;
+		}
+		return blockWide;
+	}
+
+	@Override
+	public int getBlockType() {
+		// TODO Auto-generated method stub
+		return BLOCK_J;
+	}
 }

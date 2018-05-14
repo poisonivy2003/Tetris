@@ -53,4 +53,13 @@ public class SquareBlock extends Blocks{
 	public int getBlockWidth() {
 		return 2;
 	}
+
+	public int getBlockWide() {
+		blockWide = 2;
+		return blockWide;
+	}
+
+	public int getBlockType() {
+		return BLOCK_SQUARE;
+	}
 }

@@ -47,7 +47,19 @@ public class TetrisVisual extends JPanel implements ActionListener {
 				} else if (cell == Blocks.BLOCK_I) {
 					g.setColor(Color.CYAN);
 				} else if (cell == Blocks.BLOCK_J) {
-					g.setColor(Color.getColor("green"));
+					g.setColor(Color.BLUE);
+				} else if (cell == Blocks.BLOCK_L) {
+					g.setColor(Color.BLUE);
+				} else if (cell == Blocks.BLOCK_S) {
+					g.setColor(Color.GREEN);
+				} else if (cell == Blocks.BLOCK_REVERSES) {
+					g.setColor(Color.RED);
+				} else if (cell == Blocks.BLOCK_SQUARE) {
+					g.setColor(Color.YELLOW);
+				} else if (cell == Blocks.BLOCK_T) {
+					g.setColor(Color.MAGENTA);
+				} else {
+					assert(false);
 				}
 				g.fillRect(x, y, mSquareWidth-3, mSquareHeight-3);				
 			}
