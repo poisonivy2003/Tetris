@@ -70,7 +70,10 @@ public class TetrisVisual extends JPanel implements ActionListener {
 			}
 					
 		}
-//		block.shape(g);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 50*16, 50*6, 50*2);
+		g.setColor(Color.BLACK);
+		g.drawString("" + mG.getScore(), 50*3, 50*17);
 //		
 //		block.turn(g);
 //		repaint();

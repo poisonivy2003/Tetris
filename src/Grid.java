@@ -223,9 +223,15 @@ public class Grid {
 		}
 	}
 	
-	public void updateScore(int e)
+	private void updateScore(int e)
 	{
 		mScore += e;
 	}
+	
+	public int getScore()
+	{
+		return mScore;
+	}
+
 
 }
