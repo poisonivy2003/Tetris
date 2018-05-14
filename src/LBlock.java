@@ -130,5 +130,23 @@ public class LBlock extends Blocks {
 		return blockLong;
 	}
 
+	@Override
+	public int getBlockWide() {
+		if (currentSide == 1 || currentSide == 3) {
+			blockWide = 3;
+		} 
+		else {
+			blockWide = 2;
+		}
+		return blockLong;
+
+	}
+
+	@Override
+	public int getBlockType() {
+		// TODO Auto-generated method stub
+		return BLOCK_L;
+	}
+
 }
 

@@ -48,19 +48,6 @@ public class ReverseSBlock extends Blocks{
 		}
 	}
 
-//	public void turnShape(Graphics g) {
-//		if (currentSide == 0)
-//		{
-//			currentSide = 1;
-//			shape(g);
-//		}
-//		else
-//		{
-//			currentSide = 0;
-//			shape(g);
-//		}
-//	}
-
 	public int getBlockLong() {
 		if (currentSide == 1)
 		{
@@ -112,6 +99,23 @@ public class ReverseSBlock extends Blocks{
 			blockWide = 2;
 		}
 		return blockWide;
+	}
+
+	@Override
+	public int getBlockWide() {
+		if (currentSide == 1)		{
+			blockWide = 3;
+		}
+		else 
+		{
+			blockWide = 2;
+		}
+		return blockWide;
+	}
+
+	@Override
+	public int getBlockType() {
+		return BLOCK_REVERSES;
 	}
 }
 
