@@ -7,16 +7,15 @@ public class SBlock extends Blocks {
 
 	public SBlock(int x, int y) {
 		super(x, y);
-		currentSide = 0; // 0 is flat, 1 is straight
+		currentSide = 0; // 0 straight, 1 is Sideways
 	}
 
 	public void shape(Graphics g) {
 		assert(false);
 	}
-//		
 
 	public int getBlockLong() {
-		if (currentSide == 1 || currentSide == 3) {
+		if (currentSide == 1) {
 			blockLong = 2;
 		} else {
 			blockLong = 3;
