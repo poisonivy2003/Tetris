@@ -151,26 +151,24 @@ public class Grid {
        case 2:
         	mThisBlock = new JBlock(mWidth/2,0);
     		break;
-//        case 3:
-//        	mThisBlock = new LBlock(mWidth/2,0);
-//    		break;
-//        case 4:
-////        	mThisBlock = new SBlock(mWidth/2,0);
-////    		break;
-//        case 5:
-//        	mThisBlock = new ReverseSBlock(mWidth/2,0);
-//    		break;
-//        case 6:
-//        	mThisBlock = new SquareBlock(mWidth/2,0);
-//    		break;
-//        case 7:
-////        	mThisBlock = new TBlock(mWidth/2,0);
-////    		break;
-    	default:
-    		mThisBlock = new IBlock(mWidth/2,0);
+        case 3:
+        	mThisBlock = new LBlock(mWidth/2,0);
     		break;
-//    		assert(false);
-//    		break;
+        case 4:
+        	mThisBlock = new SBlock(mWidth/2,0);
+    		break;
+        case 5:
+        	mThisBlock = new ReverseSBlock(mWidth/2,0);
+    		break;
+        case 6:
+        	mThisBlock = new SquareBlock(mWidth/2,0);
+    		break;
+        case 7:
+        	mThisBlock = new TBlock(mWidth/2,0);
+    		break;
+    	default:
+    		assert(false);
+    		break;
         }
 	}
 
