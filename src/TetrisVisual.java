@@ -14,6 +14,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 	private Grid mG;
 	private int mSquareWidth;
 	private int mSquareHeight;
+	//private int[][] cellI
 	Action mA;
 	//zzz//public static int time;
 	
@@ -24,7 +25,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		addKeyListener(mA);
 		mSquareWidth = 50;
 		mSquareHeight = 50;
-		int time = 500;  // in milli-seconds
+		int time = 10;  // in milli-seconds
 		Timer clock = new Timer(time, this);
 		clock.start();
 
@@ -41,10 +42,12 @@ public class TetrisVisual extends JPanel implements ActionListener {
 				int cell = matrix[row][column];
 				int x = column*mSquareWidth;
 				int y = row*mSquareHeight;
-				if (cell == 0) {
+				if (cell == Blocks.BLOCK_NONE) {
 				    g.setColor(Color.GRAY);
-				} else {
-					g.setColor(Color.RED);
+				} else if (cell == Blocks.BLOCK_I) {
+					g.setColor(Color.CYAN);
+				} else if (cell == Blocks.BLOCK_J) {
+					g.setColor(Color.getColor("green"));
 				}
 				g.fillRect(x, y, mSquareWidth-3, mSquareHeight-3);				
 			}
@@ -67,7 +70,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		JFrame window = new JFrame();
 		TetrisVisual t = new TetrisVisual();
 		window.getContentPane().add(t);
-		window.setSize(50*6, 50*15);
+		window.setSize(50*6, 50*20);
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

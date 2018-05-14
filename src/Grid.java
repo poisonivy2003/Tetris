@@ -4,38 +4,38 @@ public class Grid {
 	private int mxPos, myPos; // how many blocks down and right the lock is
 	public static int mScore; // points
 	Blocks mThisBlock; // block passed in
-	private int[][] blockGrid; // holds a number of points that represent the total amount of blocks to fill
+	private int[][] mBackGrid; // holds a number of points that represent the total amount of blocks to fill
 								// the grid( 0 = empty, 1 = full)
 	private int mHeight;
 	private int mWidth;
 
 	public Grid(int width, int height) {
-		mThisBlock = new IBlock(0, 0);
+		createNewBlock();
 		mHeight = height;
 		mWidth = width;
-		blockGrid = new int[height][width];
+		mBackGrid = new int[height][width];
 		for (int i = 0; i < height; ++i) {
 			for (int j = 0; j < width; ++j) {
-				blockGrid[i][j] = 0; // looping through array and setting each column(height) and row(width) to zero
+				mBackGrid[i][j] = Blocks.BLOCK_NONE; // looping through array and setting each column(height) and row(width) to zero
 			}
 		}
 	}
 
 	public void clearRow() {
-		for (int row = 0; row < blockGrid.length; ++row) {
+		for (int row = 0; row < mBackGrid.length; ++row) {
 			if (isFilled(row) == true) // checks if this current row is filled
 			{
 				for (int i = row; i > 0; --i) // starts at the filled row
 				{
-					for (int p = 0; p < blockGrid[row].length; ++p) { // goes down the row, replacing every value with
+					for (int p = 0; p < mBackGrid[row].length; ++p) { // goes down the row, replacing every value with
 																		// the one above it
-						blockGrid[i][p] = blockGrid[i - 1][p];
+						mBackGrid[i][p] = mBackGrid[i - 1][p];
 					}
 
 				}
-				for (int p = 0; p < blockGrid[0].length; ++p) { // goes down 0th row, replacing every value with the one
+				for (int p = 0; p < mBackGrid[0].length; ++p) { // goes down 0th row, replacing every value with the one
 																// above it
-					blockGrid[0][p] = 0;
+					mBackGrid[0][p] = Blocks.BLOCK_NONE;
 				}
 			}
 		}
@@ -56,8 +56,8 @@ public class Grid {
 	}
 
 	public boolean endGame() {
-		for (int i = 0; i < blockGrid[0].length; ++i) {
-			if (blockGrid[0][i] == 1) {
+		for (int i = 0; i < mBackGrid[0].length; ++i) {
+			if (mBackGrid[0][i] == 1) {
 				return true;
 			}
 		}
@@ -67,28 +67,34 @@ public class Grid {
 	// checks to see if the row inputted is filled
 	private boolean isFilled(int row) {
 		int count = 0;
-		for (int i = 0; i < blockGrid[row].length; ++i) {
-			if (blockGrid[row][i] == 1) {
+		for (int i = 0; i < mBackGrid[row].length; ++i) {
+			if (mBackGrid[row][i] == 1) {
 				count++;
 			}
-			if (count == blockGrid.length)
+			if (count == mBackGrid.length)
 				return true;
 		}
 		return false;
 	}
 
 	// Assumption: User only calls this after the block has stopped moving
-	private void updateBackgroundGrid() {
+	private void mergeBlockIntoGrid() {
 		// updates the original grid, ("background")
+		if (mThisBlock == null) {
+			return;
+		}
 		int[][] blockPos = mThisBlock.getPositions();
 		mxPos = mThisBlock.getXPos();
 		myPos = mThisBlock.getYPos();
 		for (int i = 0; i < blockPos.length; ++i) { // changes 0's to 1's for the squares that are occupied by the
 													// current block
+			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			blockGrid[x][y] = 1;
+			System.out.println("merge" + x + " " + y);
+			mBackGrid[y][x] = mThisBlock.getBlockType();
 		}
+		mThisBlock = null;
 	}
 
 	// Caller is VIEW
@@ -97,25 +103,37 @@ public class Grid {
 		int[][] meshToDraw = new int[mHeight][mWidth];
 		for (int i = 0; i < mHeight; ++i) {
 			for (int j = 0; j < mWidth; ++j) {
-				meshToDraw[i][j] = blockGrid[i][j];
+				meshToDraw[i][j] = mBackGrid[i][j];
 			}
 		}
 		// update the copied grid with current block falling down
+		if (mThisBlock == null) {
+			return meshToDraw;
+		}
 		int[][] blockPos = mThisBlock.getPositions();
 		mxPos = mThisBlock.getXPos();
 		myPos = mThisBlock.getYPos();
-		System.out.println(mxPos + " " + myPos);
+		//System.out.println(mxPos + " " + myPos);
 		for (int i = 0; i < blockPos.length; ++i) { // changes 0's to 1's for the squares that are occupied by the
 													// current block
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			meshToDraw[y][x] = 1;
+			meshToDraw[y][x] = mThisBlock.getBlockType();
 		}
+		// update grid with pile
+		//int [][] pilePos = 
 		return meshToDraw;
 	}
-
+	
+	private void createNewBlock() {
+		mThisBlock = new IBlock(2,0);
+	}
+	
 	public void moveBlock(int cmd) {
 		System.out.println("test " + cmd);
+		if (mThisBlock == null) {
+			return;
+		}
 		switch (cmd) {
 		case Action.CMD_ROTATE:
 			mThisBlock.turn();
@@ -127,7 +145,12 @@ public class Grid {
 			mThisBlock.setXPos(mxPos + 1);
 			break;
 		case Action.CMD_MOVE_DOWN:
-			mThisBlock.setYPos(myPos + 1);
+			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) {
+				mThisBlock.setYPos(myPos + 1);
+			} else {
+				mergeBlockIntoGrid();
+				createNewBlock();
+			}
 			updateScore(2);
 			break;
 		case Action.CMD_MOVE_BOTTOM:

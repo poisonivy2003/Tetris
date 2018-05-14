@@ -11,7 +11,15 @@ public abstract class Blocks{
 	public static int xCoord, yCoord; //in terms of pixels
 	public static int xPos, yPos; //in terms of blocks
 	public static final int blockWidth = 20;
-	
+	public static final int BLOCK_NONE = 0;
+	public static final int BLOCK_I = 1;
+	public static final int BLOCK_J = 2;
+	public static final int BLOCK_L = 3;
+	public static final int BLOCK_S = 4;
+	public static final int BLOCK_REVERSES = 5;
+	public static final int BLOCK_SQUARE = 6;
+	public static final int BLOCK_T = 7;
+
 	//Constructors:
 	public Blocks(int x, int y) //starting in the middle of the screen
 	{
@@ -25,8 +33,10 @@ public abstract class Blocks{
 	public abstract void shape(Graphics g);
 	public abstract void turn();
 	public abstract int getBlockLong();
+	public abstract int getBlockWide();
 	public abstract int[][] getPositions();
 	public abstract int getBlockWidth();
+	public abstract int getBlockType();
 	
 	//Non-abstract methods
 //	public static int getX()
