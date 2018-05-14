@@ -142,9 +142,38 @@ public class Grid {
 	}
 	
 	private void createNewBlock() {
-		mThisBlock = new IBlock(2,0);
+		int choose = (int) (Math.random() * 7) + 1;
+        switch (choose)
+        {
+        case 1: //Iblock
+    		mThisBlock = new IBlock(mWidth/2,0);
+    		break;
+       case 2:
+        	mThisBlock = new JBlock(mWidth/2,0);
+    		break;
+//        case 3:
+//        	mThisBlock = new LBlock(mWidth/2,0);
+//    		break;
+//        case 4:
+////        	mThisBlock = new SBlock(mWidth/2,0);
+////    		break;
+//        case 5:
+//        	mThisBlock = new ReverseSBlock(mWidth/2,0);
+//    		break;
+//        case 6:
+//        	mThisBlock = new SquareBlock(mWidth/2,0);
+//    		break;
+//        case 7:
+////        	mThisBlock = new TBlock(mWidth/2,0);
+////    		break;
+    	default:
+    		mThisBlock = new IBlock(mWidth/2,0);
+    		break;
+//    		assert(false);
+//    		break;
+        }
 	}
-	
+
 	public void moveBlock(int cmd) {
 		System.out.println("test " + cmd);
 		if (mThisBlock == null) {
