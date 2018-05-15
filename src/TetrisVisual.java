@@ -23,7 +23,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		mG = new Grid(8, 15);
 		mA  = new Action(mG);
 		addKeyListener(mA);
-		mSquareWidth = 50;
+		mSquareWidth = 50; /**change this line and the one below it to rescale**/
 		mSquareHeight = 50;
 		int time = 10;  // in milli-seconds
 		Timer clock = new Timer(time, this);
@@ -39,7 +39,13 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		int[][] matrix = mG.getMesh();
 		if (matrix == null)
 		{
-			g.drawString("GAME OVER", 100, 100);
+			int point = (mSquareWidth/5)*2;
+			Font f1 = new Font("Sans", Font.BOLD, point);
+			g.setFont(f1);
+			g.setColor(Color.WHITE);
+			g.fillRect(point * 3, point * 3, point * 10, point * 2);
+			g.setColor(Color.BLACK);
+			g.drawString("GAME OVER", mSquareWidth * 2, point * 4);
 			return;
 		}
 		for (int row=0; row<matrix.length; row++) {
@@ -54,7 +60,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 				} else if (cell == Blocks.BLOCK_J) {
 					g.setColor(Color.BLUE);
 				} else if (cell == Blocks.BLOCK_L) {
-					g.setColor(Color.BLUE);
+					g.setColor(Color.ORANGE);
 				} else if (cell == Blocks.BLOCK_S) {
 					g.setColor(Color.GREEN);
 				} else if (cell == Blocks.BLOCK_REVERSES) {
@@ -70,14 +76,13 @@ public class TetrisVisual extends JPanel implements ActionListener {
 			}
 					
 		}
+		int point = (mSquareWidth/5)*2;
+		Font f1 = new Font("Ariel", Font.BOLD, point);
+		g.setFont(f1);
 		g.setColor(Color.WHITE);
-		g.fillRect(0, 50*16, 50*6, 50*2);
+		g.fillRect(0, (int) (mSquareHeight*15.5), mSquareWidth*6, mSquareHeight*1);
 		g.setColor(Color.BLACK);
-		g.drawString("" + mG.getScore(), 50*3, 50*17);
-//		
-//		block.turn(g);
-//		repaint();
-		//System.out.println("hello");
+		g.drawString("" + mG.getScore(), mSquareWidth*3, mSquareHeight*16);
 	}
 	
 	
@@ -90,11 +95,10 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		JFrame window = new JFrame();
 		TetrisVisual t = new TetrisVisual();
 		window.getContentPane().add(t);
-		window.setSize(50*6, 50*20);
+		window.setSize(t.mSquareWidth*6, t.mSquareHeight*19);
 		window.setVisible(true);
+		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		
 	}
 
 }

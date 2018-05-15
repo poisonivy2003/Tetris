@@ -192,6 +192,7 @@ public class JBlock extends Blocks{
 		{
 			blockWide = 2;
 		}
+		System.out.println(blockWide);
 		return blockWide;
 	}
 

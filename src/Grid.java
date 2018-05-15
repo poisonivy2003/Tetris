@@ -10,6 +10,7 @@ public class Grid {
 	private int mHeight;
 	private int mWidth;
 
+	//creates a new block, initializes fields, and creates the original grid
 	public Grid(int width, int height) {
 		createNewBlock();
 		mHeight = height;
@@ -23,6 +24,7 @@ public class Grid {
 		mIsGameOver = false;
 	}
 
+	//goes through every to check if it is filled, if yes, clears it
 	public void tryClearRows() {
 		for (int row = 0; row < mBackGrid.length; ++row) {
 			if (isFilled(row) == true) // checks if this current row is filled
@@ -39,10 +41,12 @@ public class Grid {
 																// above it
 					mBackGrid[0][p] = Blocks.BLOCK_NONE;
 				}
+				updateScore(10);
 			}
 		}
 	}
 
+	//checks to see if the block will overlap with the original grid, true if yes, false if no
 	public boolean checkOverlap() {
 		// updates the original grid, ("background")
 		if (mThisBlock == null) {
@@ -57,17 +61,18 @@ public class Grid {
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
 			// .out.println("check" + x + " " + y);
-			if (mBackGrid[y][x] != Blocks.BLOCK_NONE)
+			if (mBackGrid[y][x] != Blocks.BLOCK_NONE) //1 if theres a block, 0 if not
 			{
-				return true;
+				return true; //returns true if this block is overlapping
 			}
 		}
-		return false;
+		return false; //returns false if this block isn't overlapping
 	}
 
+	//checks if the top row is filled, if yes, returns true
 	public boolean isGameOver() {
 		for (int i = 0; i < mBackGrid[0].length; ++i) {
-			if (mBackGrid[0][i] == 1) {
+			if (mBackGrid[0][i] != Blocks.BLOCK_NONE) {
 				return true;
 			}
 		}
@@ -88,9 +93,9 @@ public class Grid {
 	}
 
 	// Assumption: User only calls this after the block has stopped moving
+	// updates the original grid, ("background"), by merging the last block in
 	private boolean mergeBlockIntoGrid() {
-		// updates the original grid, ("background")
-		if (mThisBlock == null) {
+		if (mThisBlock == null) { //the block is inactive
 			return false;
 		}
 		int[][] blockPos = mThisBlock.getPositions();
@@ -104,11 +109,12 @@ public class Grid {
 			// .out.println("merge" + x + " " + y);
 			mBackGrid[y][x] = mThisBlock.getBlockType();
 		}
-		mThisBlock = null;
+		mThisBlock = null; //sets the block to be inactive
 		return isGameOver();
 	}
 
 	// Caller is VIEW
+	//a temporary 
 	public int[][] getMesh() {
 		if (mIsGameOver == true)
 		{
@@ -184,28 +190,34 @@ public class Grid {
 			} 
 			break;
 		case Action.CMD_MOVE_LEFT:
-			if (Blocks.getXPos() > 0) {
+			if (Blocks.getXPos() > 0) { //prevents block from moving off screen and overlap another square
 				mThisBlock.setXPos(mxPos - 1);
+				if (checkOverlap() == true) {
+					mThisBlock.setXPos(mxPos + 1);
+				}
 			}
 			break;
 		case Action.CMD_MOVE_RIGHT:
-			if (Blocks.getXPos() + mThisBlock.getBlockWidth() < mWidth) {
+			if (Blocks.getXPos() + mThisBlock.getBlockWidth() < mWidth) { //prevents block from moving off screen and overlap another square
 				mThisBlock.setXPos(mxPos + 1);
+				if (checkOverlap() == true) {
+					mThisBlock.setXPos(mxPos - 1);
+				}
 			}
 			break;
 		case Action.CMD_MOVE_DOWN:
-			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) {
+			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) { //if the block hasn't reached the bottom yet, keep dropping it
 				mThisBlock.setYPos(myPos + 1);
-				if (checkOverlap() == true)
+				if (checkOverlap() == true) //if the block is about to hit another block keep it where it is and merge it into the background
 				{
 					mThisBlock.setYPos(myPos - 1);
 					mIsGameOver = mergeBlockIntoGrid();
-					if (mIsGameOver == false)
+					if (mIsGameOver == false) //if the game isn't over yet(pile of blocks not touching the top), create a new block
 					{
 						createNewBlock();
 					}
 				}
-			} else {
+			} else { //when the block is at the bottom of the grid
 				mIsGameOver = mergeBlockIntoGrid();
 				if (mIsGameOver == false)
 				{

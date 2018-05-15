@@ -46,7 +46,7 @@ public class LBlock extends Blocks {
 		else
 		{
 			blockPosition = new int[][] {
-				{0, 0}, {0, 1}, {-1, 1}, {-2, 1}
+				{2, 0}, {2, 1}, {1, 1}, {0, 1}
 			};
 		}
 		return blockPosition;
@@ -79,7 +79,7 @@ public class LBlock extends Blocks {
 		else {
 			blockWide = 2;
 		}
-		return blockLong;
+		return blockWide;
 	}
 
 	@Override
