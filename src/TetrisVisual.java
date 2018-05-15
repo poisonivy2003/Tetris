@@ -95,7 +95,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		JFrame window = new JFrame();
 		TetrisVisual t = new TetrisVisual();
 		window.getContentPane().add(t);
-		window.setSize(t.mSquareWidth*6, t.mSquareHeight*19);
+		window.setSize(t.mSquareWidth*8, t.mSquareHeight*19);
 		window.setVisible(true);
 		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
