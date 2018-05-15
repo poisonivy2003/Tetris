@@ -10,104 +10,6 @@ public class JBlock extends Blocks{
 		currentSide = 4; // 0 is j, 1 is 90 clockwise turn, and so on till 3 then back to 0
 	}
 
-	public void shape(Graphics g) {
-		if (currentSide == 0) //j-shape
-		{
-			int addDown = 0, addAcross = blockWidth;
-			for (int i = 0; i < 3; i++)
-			{	
-				g.setColor(Color.BLUE);
-				g.fillRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				g.setColor(Color.BLACK);
-				g.drawRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				addDown += blockWidth;
-			}
-			g.setColor(Color.BLUE);
-			g.fillRect(xCoord - addAcross, yCoord + (addDown - blockWidth), blockWidth, blockWidth);
-			g.setColor(Color.BLACK);
-			g.drawRect(xCoord - addAcross, yCoord + (addDown - blockWidth), blockWidth, blockWidth);
-		}
-		else if (currentSide == 1)
-		{
-			int addDown = 0, addAcross = blockWidth;
-			for (int i = 0; i < 2; i++)
-			{
-				g.setColor(Color.BLUE);
-				g.fillRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				g.setColor(Color.BLACK);
-				g.drawRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				addDown += blockWidth;
-			}
-			for (int i = 0; i < 2; i++)
-			{
-				g.setColor(Color.BLUE);
-				g.fillRect(xCoord + addAcross, yCoord + (addDown - blockWidth), blockWidth, blockWidth);
-				g.setColor(Color.BLACK);
-				g.drawRect(xCoord + addAcross, yCoord + (addDown - blockWidth), blockWidth, blockWidth);
-				addAcross += blockWidth;
-			}
-		}
-		else if (currentSide == 2)
-		{
-			int addDown = 0, addAcross = blockWidth;
-			for (int i = 0; i < 3; i++)
-			{	
-				g.setColor(Color.BLUE);
-				g.fillRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				g.setColor(Color.BLACK);
-				g.drawRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				addDown += blockWidth;
-			}
-			g.setColor(Color.BLUE);
-			g.fillRect(xCoord + addAcross, yCoord, blockWidth, blockWidth);
-			g.setColor(Color.BLACK);
-			g.drawRect(xCoord + addAcross, yCoord, blockWidth, blockWidth);
-		}
-		else
-		{
-			int addDown = 0, addAcross = blockWidth;
-			for (int i = 0; i < 2; i++)
-			{
-				g.setColor(Color.BLUE);
-				g.fillRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				g.setColor(Color.BLACK);
-				g.drawRect(xCoord, yCoord + addDown, blockWidth, blockWidth);
-				addDown += blockWidth;
-			}
-			for (int i = 0; i < 2; i++)
-			{
-				g.setColor(Color.BLUE);
-				g.fillRect(xCoord - addAcross, yCoord, blockWidth, blockWidth);
-				g.setColor(Color.BLACK);
-				g.drawRect(xCoord - addAcross, yCoord, blockWidth, blockWidth);
-				addAcross += blockWidth;
-			}
-		}
-	}
-
-//	public void turnShape(Graphics g) {
-//		if (currentSide == 0)
-//		{
-//			currentSide = 1;
-//			shape(g);
-//		}
-//		else if (currentSide == 1)
-//		{
-//			currentSide = 2;
-//			shape(g);
-//		}
-//		else if (currentSide == 2)
-//		{
-//			currentSide = 3;
-//			shape(g);
-//		}
-//		else
-//		{
-//			currentSide = 0;
-//			shape(g);
-//		}
-//	}
-
 	public int getBlockLong() {
 		if (currentSide == 1 || currentSide == 3)
 		{
@@ -182,23 +84,7 @@ public class JBlock extends Blocks{
 		return blockWide;
 	}
 
-	@Override
-	public int getBlockWide() {
-		if (currentSide == 1 || currentSide == 3)
-		{
-			blockWide = 3;
-		}
-		else 
-		{
-			blockWide = 2;
-		}
-		System.out.println(blockWide);
-		return blockWide;
-	}
-
-	@Override
 	public int getBlockType() {
-		// TODO Auto-generated method stub
 		return BLOCK_J;
 	}
 }

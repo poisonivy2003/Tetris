@@ -60,7 +60,6 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			// .out.println("check" + x + " " + y);
 			if (mBackGrid[y][x] != Blocks.BLOCK_NONE) //1 if theres a block, 0 if not
 			{
 				return true; //returns true if this block is overlapping
@@ -106,7 +105,6 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			// .out.println("merge" + x + " " + y);
 			mBackGrid[y][x] = mThisBlock.getBlockType();
 		}
 		mThisBlock = null; //sets the block to be inactive
@@ -141,7 +139,6 @@ public class Grid {
 			meshToDraw[y][x] = mThisBlock.getBlockType();
 		}
 		// update grid with pile
-		//int [][] pilePos = 
 		return meshToDraw;
 	}
 	

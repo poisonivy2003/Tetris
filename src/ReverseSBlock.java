@@ -10,10 +10,6 @@ public class ReverseSBlock extends Blocks {
 		currentSide = 0; // 0 is straight, 1 is sideways
 	}
 
-	public void shape(Graphics g) {
-		assert (false);
-	}
-
 	public int getBlockLong() {
 		if (currentSide == 1) {
 			blockLong = 2;
@@ -43,15 +39,6 @@ public class ReverseSBlock extends Blocks {
 	}
 
 	public int getBlockWidth() {
-		if (currentSide == 1) {
-			blockWide = 3;
-		} else {
-			blockWide = 2;
-		}
-		return blockWide;
-	}
-
-	public int getBlockWide() {
 		if (currentSide == 1) {
 			blockWide = 3;
 		} else {

@@ -10,16 +10,12 @@ import javax.swing.*;
 
 
 public class TetrisVisual extends JPanel implements ActionListener {
-	///zzz//private Blocks mBlock;
 	private Grid mG;
 	private int mSquareWidth;
 	private int mSquareHeight;
-	//private int[][] cellI
 	Action mA;
-	//zzz//public static int time;
 	
 	public TetrisVisual() {
-		//zzz//mBlock = Blocks.chooseBlock();
 		mG = new Grid(8, 15);
 		mA  = new Action(mG);
 		addKeyListener(mA);

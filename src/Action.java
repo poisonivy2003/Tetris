@@ -6,12 +6,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
 public class Action extends KeyAdapter implements ActionListener{
-
-//	private KeyEvent up;
-//	private KeyEvent down;
-//	private KeyEvent left;
-//	private KeyEvent right;
-//	private Blocks block;
 	private Grid mGrid;
 	
 	public Action(Grid grid) {
@@ -38,13 +32,13 @@ public class Action extends KeyAdapter implements ActionListener{
 		case 37: // left arrow
 			cmd = CMD_MOVE_LEFT;
 			break;
-		case 38:
+		case 38: //up arrow
 			cmd = CMD_ROTATE;
 			break;
-		case 39:
+		case 39: //right arrow
 			cmd = CMD_MOVE_RIGHT;
 			break;
-		case 40:
+		case 40: //bottom arrow
 			cmd = CMD_MOVE_DOWN;
 			break;
 		default:
