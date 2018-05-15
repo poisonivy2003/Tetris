@@ -224,16 +224,25 @@ public class Grid {
 					createNewBlock();
 				}
 			}
-			updateScore(2);
 			break;
 		case Action.CMD_MOVE_BOTTOM:
-			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) {
-				mThisBlock.setYPos(myPos + 4);
-				while (checkOverlap() == true)
+			while(true)
+			{
+				if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) 
+				{
+					mThisBlock.setYPos(myPos + 1);
+				}
+				else
+				{
+					break;
+				}
+				if (checkOverlap() == true)
 				{
 					mThisBlock.setYPos(myPos - 1);
+					break;
 				}
 			}
+			updateScore(5);
 			break;
 		default:
 			break;
@@ -243,7 +252,7 @@ public class Grid {
 			tryClearRows();
 		}
 	}
-	
+
 	private void updateScore(int e)
 	{
 		mScore += e;
