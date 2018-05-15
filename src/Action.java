@@ -32,7 +32,7 @@ public class Action extends KeyAdapter implements ActionListener{
 		int command = e.getKeyCode();
 		int cmd = CMD_NONE;
 		switch(command) {
-		case 32: // space bor
+		case 32: // space bar
 			cmd = CMD_MOVE_BOTTOM;
 			break;
 		case 37: // left arrow
@@ -46,6 +46,7 @@ public class Action extends KeyAdapter implements ActionListener{
 			break;
 		case 40:
 			cmd = CMD_MOVE_DOWN;
+			break;
 		default:
 			assert(false);
 			break;

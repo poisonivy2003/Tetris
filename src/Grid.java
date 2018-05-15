@@ -215,6 +215,13 @@ public class Grid {
 			updateScore(2);
 			break;
 		case Action.CMD_MOVE_BOTTOM:
+			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) {
+				mThisBlock.setYPos(myPos + 4);
+				while (checkOverlap() == true)
+				{
+					mThisBlock.setYPos(myPos - 1);
+				}
+			}
 			break;
 		default:
 			break;

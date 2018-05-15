@@ -20,7 +20,7 @@ public class TetrisVisual extends JPanel implements ActionListener {
 	
 	public TetrisVisual() {
 		//zzz//mBlock = Blocks.chooseBlock();
-		mG = new Grid(6, 15);
+		mG = new Grid(8, 15);
 		mA  = new Action(mG);
 		addKeyListener(mA);
 		mSquareWidth = 50;
