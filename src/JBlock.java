@@ -73,14 +73,19 @@ public class JBlock extends Blocks{
 
 	public int getBlockWidth()
 	{
-		if (currentSide == 1 || currentSide == 3)
+		if (currentSide == 1)
 		{
 			blockWide = 3;
 		}
-		else 
+		else if (currentSide == 0 || currentSide == 2)
 		{
 			blockWide = 2;
 		}
+		else
+		{
+			blockWide = 3;
+		}
+		System.out.println(blockWide);
 		return blockWide;
 	}
 

@@ -19,8 +19,8 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		mG = new Grid(8, 15);
 		mA  = new Action(mG);
 		addKeyListener(mA);
-		mSquareWidth = 50; /**change this line and the one below it to rescale**/
-		mSquareHeight = 50;
+		mSquareWidth = 40; /**change this line and the one below it to rescale**/
+		mSquareHeight = 40;
 		int time = 10;  // in milli-seconds
 		Timer clock = new Timer(time, this);
 		clock.start();
