@@ -60,7 +60,6 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			// .out.println("check" + x + " " + y);
 			if (mBackGrid[y][x] != Blocks.BLOCK_NONE) //1 if theres a block, 0 if not
 			{
 				return true; //returns true if this block is overlapping
@@ -106,7 +105,6 @@ public class Grid {
 			// gets actual position from relative position
 			int x = mxPos + blockPos[i][0];
 			int y = myPos + blockPos[i][1];
-			// .out.println("merge" + x + " " + y);
 			mBackGrid[y][x] = mThisBlock.getBlockType();
 		}
 		mThisBlock = null; //sets the block to be inactive
@@ -141,7 +139,6 @@ public class Grid {
 			meshToDraw[y][x] = mThisBlock.getBlockType();
 		}
 		// update grid with pile
-		//int [][] pilePos = 
 		return meshToDraw;
 	}
 	
@@ -224,16 +221,25 @@ public class Grid {
 					createNewBlock();
 				}
 			}
-			updateScore(2);
 			break;
 		case Action.CMD_MOVE_BOTTOM:
-			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) {
-				mThisBlock.setYPos(myPos + 4);
-				while (checkOverlap() == true)
+			while(true)
+			{
+				if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) 
+				{
+					mThisBlock.setYPos(myPos + 1);
+				}
+				else
+				{
+					break;
+				}
+				if (checkOverlap() == true)
 				{
 					mThisBlock.setYPos(myPos - 1);
+					break;
 				}
 			}
+			updateScore(5);
 			break;
 		default:
 			break;
@@ -243,7 +249,7 @@ public class Grid {
 			tryClearRows();
 		}
 	}
-	
+
 	private void updateScore(int e)
 	{
 		mScore += e;

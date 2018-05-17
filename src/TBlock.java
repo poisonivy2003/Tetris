@@ -7,25 +7,7 @@ public class TBlock extends Blocks {
 
 	public TBlock(int x, int y) {
 		super(x, y);
-		currentSide = 0; // 0 is flat, 1 is straight
-	}
-
-	
-
-	public void turn(Graphics g) {
-		if (currentSide == 0) {
-			currentSide = 1;
-			shape(g);
-		} else if (currentSide == 1) {
-			currentSide = 2;
-			shape(g);
-		} else if (currentSide == 2) {
-			currentSide = 3;
-			shape(g);
-		} else if (currentSide == 3) {
-			currentSide = 0;
-			shape(g);
-		}
+		currentSide = 0; // 0 is t, 1 is t turned 90 counterclockwise, and so on
 	}
 
 	public int getBlockLong() {
@@ -48,15 +30,6 @@ public class TBlock extends Blocks {
 			currentSide = 0;
 		}
 		getPositions();
-	}
-
-	public int getBlockWide() {
-		if (currentSide == 0 || currentSide == 2) {
-			blockWide = 3;
-		} else if (currentSide == 1 || currentSide == 3) {
-			blockWide = 2;
-		}
-		return blockWide;
 	}
 
 	public int[][] getPositions() {
@@ -86,7 +59,4 @@ public class TBlock extends Blocks {
 		return BLOCK_T;
 	}
 
-	public void shape(Graphics g) {
-		assert(false);
-	}
 }
