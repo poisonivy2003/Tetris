@@ -7,14 +7,16 @@ import javax.swing.Timer;
 
 public class Action extends KeyAdapter implements ActionListener{
 
+	// fields
 	private Grid mGrid;
-	
 	public static final int  CMD_NONE = 0;
 	public static final int  CMD_ROTATE = 1;
 	public static final int  CMD_MOVE_LEFT = 2;
 	public static final int  CMD_MOVE_RIGHT = 3;
 	public static final int  CMD_MOVE_DOWN = 4;
 	public static final int  CMD_MOVE_BOTTOM = 5;
+	
+	// constructor
 	
 	// This constructor takes in a grid as a parameter and sets it equal to the mGrid field
 	// A timer is also started to set the rate at which the blocks fall down
@@ -25,9 +27,9 @@ public class Action extends KeyAdapter implements ActionListener{
 		clock.start();
 	}
 	
+	// methods
 	
-	
-	
+	// This method detects when one of the arrow keys or the space bar is pressed and 
 	public void keyPressed(KeyEvent e) {
 		int command = e.getKeyCode();
 		int cmd = CMD_NONE;

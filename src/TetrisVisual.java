@@ -10,16 +10,17 @@ import javax.swing.*;
 
 
 public class TetrisVisual extends JPanel implements ActionListener {
-	///zzz//private Blocks mBlock;
+	
+	// fields
 	private Grid mG;
 	private int mSquareWidth;
 	private int mSquareHeight;
-	//private int[][] cellI
-	Action mA;
-	//zzz//public static int time;
+	private Action mA;
 	
+	// constructor
+	// The constructor initializes new Grid and Action objects, adds a keyListener to get keyboard commands,
+	// and sets the width and height of each square. Also, a timer is created to set how fast
 	public TetrisVisual() {
-		//zzz//mBlock = Blocks.chooseBlock();
 		mG = new Grid(8, 15);
 		mA  = new Action(mG);
 		addKeyListener(mA);
