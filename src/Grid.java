@@ -183,7 +183,7 @@ public class Grid {
 		switch (cmd) {
 		case Action.CMD_ROTATE:
 			mThisBlock.turn();
-			if (Blocks.getXPos() + mThisBlock.getBlockWidth() >= mWidth) {
+			if (Blocks.getXPos() + mThisBlock.getBlockWidth() > mWidth) {
 				mThisBlock.turn();
 				mThisBlock.turn();
 				mThisBlock.turn();

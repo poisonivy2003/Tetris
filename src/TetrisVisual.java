@@ -23,8 +23,8 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		mG = new Grid(8, 15);
 		mA  = new Action(mG);
 		addKeyListener(mA);
-		mSquareWidth = 50; /**change this line and the one below it to rescale**/
-		mSquareHeight = 50;
+		mSquareWidth = 40; /**change this line and the one below it to rescale**/
+		mSquareHeight = 40;
 		int time = 10;  // in milli-seconds
 		Timer clock = new Timer(time, this);
 		clock.start();
@@ -95,9 +95,9 @@ public class TetrisVisual extends JPanel implements ActionListener {
 		JFrame window = new JFrame();
 		TetrisVisual t = new TetrisVisual();
 		window.getContentPane().add(t);
-		window.setSize(t.mSquareWidth*6, t.mSquareHeight*19);
+		window.setSize(t.mSquareWidth*8, t.mSquareHeight*15);
 		window.setVisible(true);
-		window.setResizable(false);
+		window.setResizable(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
