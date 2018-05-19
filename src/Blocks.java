@@ -1,3 +1,9 @@
+/*
+ * Coded By: Ivy Chang
+ * Completed: 5/13/2018
+ * Revision Number: 8
+ */
+
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
 
@@ -33,21 +39,25 @@ public abstract class Blocks{
 	public abstract int getBlockWidth();
 	public abstract int getBlockType();
 	
+	//Gets xPos
 	public static int getXPos()
 	{
 		return xPos;
 	}
 	
+	//Gets yPos
 	public static int getYPos()
 	{
 		return yPos;
 	}
 	
+	//Sets xPos
 	public static void setXPos(int x)
 	{
 		xPos = x;	
 	}
 	
+	//Sets yPos
 	public static void setYPos(int y)
 	{
 		yPos = y;

@@ -1,3 +1,9 @@
+/*
+ * Coded By: Ivy Chang
+ * Completed: 5/17/2018
+ * Revision Number: 16
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -53,7 +59,7 @@ public class JBlock extends Blocks{
 		return blockPosition;
 	}
 	
-	//Turns the block
+	//Turns the block by flipping which side it is on
 	public void turn() {
 		if (currentSide == 0)
 		{
