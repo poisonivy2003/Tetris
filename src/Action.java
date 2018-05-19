@@ -2,15 +2,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.Timer;
 
+// This class extends the KeyAdapter class so that it can listen to keyboard inputs and process them. 
+// It also implements the ActionListener interface so that it can use the timer and move the current block down every second.
 public class Action extends KeyAdapter implements ActionListener{
 
 	// fields
 
-	private Grid mGrid;
-	public static final int  CMD_NONE = 0;
+	private Grid mGrid; // a grid object is created for the action to send its commands to 
+	public static final int  CMD_NONE = 0; // static constants to represent each move
 	public static final int  CMD_ROTATE = 1;
 	public static final int  CMD_MOVE_LEFT = 2;
 	public static final int  CMD_MOVE_RIGHT = 3;
@@ -30,7 +31,8 @@ public class Action extends KeyAdapter implements ActionListener{
 	
 	// methods
 	
-	// This method detects when one of the arrow keys or the space bar is pressed and 
+	// This method detects when one of the arrow keys or the space bar is pressed and calls on the moveBlock method
+	// from the Grid class to move the current block in the appropriate direction
 	public void keyPressed(KeyEvent e) {
 		int command = e.getKeyCode();
 		int cmd = CMD_NONE;
@@ -54,13 +56,11 @@ public class Action extends KeyAdapter implements ActionListener{
 			assert(false);
 			break;
 		}
-		mGrid.moveBlock(cmd);
+		mGrid.moveBlock(cmd); // move the block according to the command
 	}
 
+	// each time the timer calls on this method, the moveBlock method is called to move the block down 1 tile
 	public void actionPerformed(ActionEvent e) {
 		mGrid.moveBlock(CMD_MOVE_DOWN);
 	}
-	
-	
-
 }
