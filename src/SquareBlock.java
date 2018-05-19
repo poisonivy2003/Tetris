@@ -1,3 +1,9 @@
+/*
+ * Coded By: Ivy Chang
+ * Completed: 5/11/2018
+ * Revision Number: 3
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -22,7 +28,7 @@ public class SquareBlock extends Blocks{
 		return blockPosition;	
 	}
 	
-	//Turns the block
+	//Gets this position (this doesn't turn because squares look the same no matter which way they are turned)
 	public void turn() {
 		getPositions();
 	}

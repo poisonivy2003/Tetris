@@ -186,6 +186,12 @@ public class Grid {
 				mThisBlock.turn();
 				mThisBlock.turn();
 			} 
+			if (checkOverlap() == true) //if the block is hitting another block by rotating, rotate it back
+			{
+				mThisBlock.turn();
+				mThisBlock.turn();
+				mThisBlock.turn();
+			}
 			break;
 		case Action.CMD_MOVE_LEFT:
 			if (Blocks.getXPos() > 0) { //prevents block from moving off screen and overlap another square

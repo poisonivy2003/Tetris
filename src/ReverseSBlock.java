@@ -1,3 +1,9 @@
+/*
+ * Coded By: Ivy Chang
+ * Completed: 5/13/2018
+ * Revision Number: 6
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -31,7 +37,7 @@ public class ReverseSBlock extends Blocks {
 		return blockPosition;
 	}
 
-	//Turns the block
+	//Turns the block by flipping which side it is on
 	public void turn() {
 		if (currentSide == 0) {
 			currentSide = 1;
