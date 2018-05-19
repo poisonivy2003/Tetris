@@ -8,7 +8,6 @@ import javax.swing.Timer;
 public abstract class Blocks{
 
 	//Fields:
-	public static int xCoord, yCoord; //in terms of pixels
 	public static int xPos, yPos; //in terms of blocks
 	public static final int blockWidth = 20;
 	public static final int BLOCK_NONE = 0;
@@ -23,10 +22,8 @@ public abstract class Blocks{
 	//Constructors:
 	public Blocks(int x, int y) //starting in the middle of the screen
 	{
-		xCoord = x;
-		yCoord = y;
-		xPos = xCoord/blockWidth;
-		yPos = yCoord/blockWidth;
+		xPos = x/blockWidth;
+		yPos = y/blockWidth;
 	}
 	
 	//Abstract methods:

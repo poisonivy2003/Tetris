@@ -111,8 +111,7 @@ public class Grid {
 		return isGameOver();
 	}
 
-	// Caller is VIEW
-	//a temporary 
+	// Caller is TetrisVisual(VIEW)
 	public int[][] getMesh() {
 		if (mIsGameOver == true)
 		{
@@ -142,11 +141,12 @@ public class Grid {
 		return meshToDraw;
 	}
 	
+	//Creates a random new block
 	private void createNewBlock() {
 		int choose = (int) (Math.random() * 7) + 1;
         switch (choose)
         {
-        case 1: //Iblock
+        case 1:
     		mThisBlock = new IBlock(mWidth/2,0);
     		break;
        case 2:
@@ -173,14 +173,15 @@ public class Grid {
         }
 	}
 
+	//Connects actions from the action class to data commands
 	public void moveBlock(int cmd) {
-		if (mThisBlock == null) {
+		if (mThisBlock == null) { //already part of background
 			return;
 		}
 		switch (cmd) {
 		case Action.CMD_ROTATE:
 			mThisBlock.turn();
-			if (Blocks.getXPos() + mThisBlock.getBlockWidth() > mWidth) {
+			if (Blocks.getXPos() + mThisBlock.getBlockWidth() > mWidth) { //not in boundaries
 				mThisBlock.turn();
 				mThisBlock.turn();
 				mThisBlock.turn();
@@ -205,7 +206,7 @@ public class Grid {
 		case Action.CMD_MOVE_DOWN:
 			if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) { //if the block hasn't reached the bottom yet, keep dropping it
 				mThisBlock.setYPos(myPos + 1);
-				if (checkOverlap() == true) //if the block is about to hit another block keep it where it is and merge it into the background
+				if (checkOverlap() == true) //if the block is hitting another block move it back one and merge it into the background
 				{
 					mThisBlock.setYPos(myPos - 1);
 					mIsGameOver = mergeBlockIntoGrid();
@@ -225,7 +226,7 @@ public class Grid {
 		case Action.CMD_MOVE_BOTTOM:
 			while(true)
 			{
-				if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight) 
+				if (Blocks.getYPos() + mThisBlock.getBlockLong() < mHeight)  //keep moving down block unless it hits the bottom
 				{
 					mThisBlock.setYPos(myPos + 1);
 				}
@@ -233,7 +234,7 @@ public class Grid {
 				{
 					break;
 				}
-				if (checkOverlap() == true)
+				if (checkOverlap() == true) //if the block is hitting the other block, move it back
 				{
 					mThisBlock.setYPos(myPos - 1);
 					break;
@@ -244,17 +245,19 @@ public class Grid {
 		default:
 			break;
 		}
-		if (mIsGameOver == false)
+		if (mIsGameOver == false) //if the game is still going, try to clear the rows
 		{
 			tryClearRows();
 		}
 	}
 
+	//Updates the score
 	private void updateScore(int e)
 	{
 		mScore += e;
 	}
 	
+	//Gets the score
 	public int getScore()
 	{
 		return mScore;

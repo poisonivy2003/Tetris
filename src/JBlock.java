@@ -2,14 +2,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class JBlock extends Blocks{
-	private int currentSide;
-	private int blockLong, blockWide;
+	private int currentSide; //which side the block is on (0-3 in this case)
+	private int blockLong, blockWide; //how many squares long/wide the block is
 	
 	public JBlock(int x, int y) {
 		super(x, y);
-		currentSide = 4; // 0 is j, 1 is 90 clockwise turn, and so on till 3 then back to 0
+		currentSide = 0; // 0 is j, 1 is 90 clockwise turn, and so on till 3 then back to 0
 	}
 
+	//Returns how long(in squares) the block is
 	public int getBlockLong() {
 		if (currentSide == 1 || currentSide == 3)
 		{
@@ -22,6 +23,7 @@ public class JBlock extends Blocks{
 		return blockLong;
 	}
 	
+	//Returns the position of each square fitted together to make a block at each of the 4 different sides
 	public int[][] getPositions() {
 		int[][] blockPosition;
 		if (currentSide == 0)
@@ -51,6 +53,7 @@ public class JBlock extends Blocks{
 		return blockPosition;
 	}
 	
+	//Turns the block
 	public void turn() {
 		if (currentSide == 0)
 		{
@@ -70,7 +73,8 @@ public class JBlock extends Blocks{
 		}
 		getPositions();
 	}
-
+	
+	//Returns how wide(in squares) the block is
 	public int getBlockWidth()
 	{
 		if (currentSide == 1)
@@ -85,10 +89,10 @@ public class JBlock extends Blocks{
 		{
 			blockWide = 3;
 		}
-		System.out.println(blockWide);
 		return blockWide;
 	}
 
+	//Returns which type of block this class is
 	public int getBlockType() {
 		return BLOCK_J;
 	}
