@@ -8,8 +8,8 @@ public class TetrisVisual extends JPanel implements ActionListener {
 
 	// fields
 	private Grid mG;
-	private int mSquareWidth;
-	private int mSquareHeight;
+	public int mSquareWidth;
+	public int mSquareHeight;
 	private Action mA;
 
 	// constructor
@@ -98,13 +98,13 @@ public class TetrisVisual extends JPanel implements ActionListener {
 	// A window is created that has the width of the grid and is a bit longer than
 	// the grid length
 	public static void main(String[] args) {
-		JFrame window = new JFrame();
-		TetrisVisual t = new TetrisVisual();
-		window.getContentPane().add(t);
-		window.setSize(t.mSquareWidth * 8, t.mSquareHeight * 19);
-		window.setVisible(true);
-		window.setResizable(true);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		JFrame window = new JFrame();
+//		TetrisVisual t = new TetrisVisual();
+//		window.getContentPane().add(t);
+//		window.setSize(t.mSquareWidth * 8, t.mSquareHeight * 19);
+//		window.setVisible(true);
+//		window.setResizable(true);
+//		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
