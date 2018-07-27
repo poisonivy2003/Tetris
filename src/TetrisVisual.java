@@ -18,19 +18,19 @@ public class TetrisVisual extends JPanel implements ActionListener {
 	// and sets the width and height of each square. Also, a timer is created to set
 	// how fast
 	public TetrisVisual() {
-		mG = new Grid(8, 15);
-		mA = new Action(mG);
-		addKeyListener(mA);
-		mSquareWidth = 40; /** change this line and the one below it to rescale **/
-		mSquareHeight = 40;
-		int time = 10; // in milli-seconds
-		Timer clock = new Timer(time, this);
-		clock.start();
+			mG = new Grid(8, 15);
+			mA = new Action(mG);
+			addKeyListener(mA);
+			mSquareWidth = 40; /** change this line and the one below it to rescale **/
+			mSquareHeight = 40;
+			int time = 10; // in milli-seconds
+			Timer clock = new Timer(time, this);
+			clock.start();
 
-		// By default JPanel is not mouse-focused
-		// see:
-		// https://stackoverflow.com/questions/11487369/jpanel-doesnt-response-to-keylistener-event
-		this.setFocusable(true);
+			// By default JPanel is not mouse-focused
+			// see:
+			// https://stackoverflow.com/questions/11487369/jpanel-doesnt-response-to-keylistener-event
+			this.setFocusable(true);
 	}
 
 	// Every 10 milliseconds the timer calls this method, which draws the grid of

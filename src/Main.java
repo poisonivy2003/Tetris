@@ -14,8 +14,9 @@ import javax.swing.JTextField;
 public class Main implements ActionListener{
 	private static ImageIcon picture;
 	private JButton start, credits, instructions, quit, mode, change;
-	private String onep = "1 Player", twop = "2 Player", cm = onep;
 	private JFrame window;
+	public static String onep = "1 Player", twop = "2 Player";
+	public static String cm = twop;
 	
 		// Creates the friendly window
 		public Main ()
@@ -68,7 +69,27 @@ public class Main implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			 JButton b = (JButton)e.getSource();
 			 JFrame w = new JFrame("Mode");
-			 if (b == start)
+			 if (b == start && cm == onep)
+			 {
+				 window.setVisible(false);
+				 JFrame w1 = new JFrame();
+				 TetrisVisual1 t1 = new TetrisVisual1();
+				 w1.getContentPane().add(t1);
+				 w1.setSize(t1.mSquareWidth * 8, t1.mSquareHeight * 19);
+				 w1.setVisible(true);
+				 w1.setResizable(true);
+				 w1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				 
+//				 window.setVisible(false);
+//				 JFrame window = new JFrame();
+//				 TetrisVisual t = new TetrisVisual();
+//				 window.getContentPane().add(t);
+//				 window.setSize(t.mSquareWidth * 8, t.mSquareHeight * 19);
+//				 window.setVisible(true);
+//				 window.setResizable(true);
+//				 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			 }
+			 else if (b == start && cm == twop)
 			 {
 				 window.setVisible(false);
 				 JFrame window = new JFrame();
@@ -78,6 +99,15 @@ public class Main implements ActionListener{
 				 window.setVisible(true);
 				 window.setResizable(true);
 				 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				 
+				 JFrame w1 = new JFrame();
+				 TetrisVisual1 t1 = new TetrisVisual1();
+				 w1.getContentPane().add(t1);
+				 w1.setSize(t1.mSquareWidth * 8, t1.mSquareHeight * 19);
+				 w1.setVisible(true);
+				 w1.setResizable(true);
+				 w1.setLocation(400, 0);
+				 w1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			 }
 			 else if (b == credits)
 			 {

@@ -1,14 +1,14 @@
 
 public class Grid {
-	private boolean mIsFilled; // true if the entire block is filled
-	private boolean mIsGameOver;
-	private int mxPos, myPos; // how many blocks down and right the lock is
+	public boolean mIsFilled; // true if the entire block is filled
+	public boolean mIsGameOver;
+	public int mxPos, myPos; // how many blocks down and right the lock is
 	public static int mScore; // points
 	Blocks mThisBlock; // block passed in
-	private int[][] mBackGrid; // holds a number of points that represent the total amount of blocks to fill
+	public int[][] mBackGrid; // holds a number of points that represent the total amount of blocks to fill
 								// the grid( 0 = empty, 1 = full)
-	private int mHeight;
-	private int mWidth;
+	public int mHeight;
+	public int mWidth;
 
 	//creates a new block, initializes fields, and creates the original grid
 	public Grid(int width, int height) {
@@ -93,7 +93,7 @@ public class Grid {
 
 	// Assumption: User only calls this after the block has stopped moving
 	// updates the original grid, ("background"), by merging the last block in
-	private boolean mergeBlockIntoGrid() {
+	public boolean mergeBlockIntoGrid() {
 		if (mThisBlock == null) { //the block is inactive
 			return false;
 		}
@@ -131,6 +131,7 @@ public class Grid {
 		int[][] blockPos = mThisBlock.getPositions();
 		mxPos = mThisBlock.getXPos();
 		myPos = mThisBlock.getYPos();
+		int qwerty = blockPos.length;
 		for (int i = 0; i < blockPos.length; ++i) { // changes 0's to 1's for the squares that are occupied by the
 													// current block
 			int x = mxPos + blockPos[i][0];
@@ -142,7 +143,7 @@ public class Grid {
 	}
 	
 	//Creates a random new block
-	private void createNewBlock() {
+	public void createNewBlock() {
 		int choose = (int) (Math.random() * 7) + 1;
         switch (choose)
         {
@@ -258,7 +259,7 @@ public class Grid {
 	}
 
 	//Updates the score
-	private void updateScore(int e)
+	public void updateScore(int e)
 	{
 		mScore += e;
 	}

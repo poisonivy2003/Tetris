@@ -52,6 +52,7 @@ public class Action extends KeyAdapter implements ActionListener{
 		case 40: //bottom arrow
 			cmd = CMD_MOVE_DOWN;
 			break;
+		
 		default:
 			assert(false);
 			break;
