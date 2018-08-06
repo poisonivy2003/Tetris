@@ -24,9 +24,9 @@ public class Action extends KeyAdapter implements ActionListener{
 	// A timer is also started to set the rate at which the blocks fall down
 	public Action(Grid grid) {
 		mGrid = grid;
-		int time = 1000;  // in milli-seconds
-		Timer clock = new Timer(time, this);
-		clock.start();
+//		int time = 1000;  // in milli-seconds
+//		Timer clock = new Timer(time, this);
+//		clock.start();
 	}
 	
 	// methods
